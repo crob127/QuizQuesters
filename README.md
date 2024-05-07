@@ -18,3 +18,4 @@ When I get 0% on a quiz
 Then I recieve a blog fish avatar
 When I view my library
 Then I can see all of the avatars I have collected
+=======
