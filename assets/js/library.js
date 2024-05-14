@@ -1,3 +1,15 @@
+function redirectToAnotherPage() {
+    window.location.href = "WEEK 6/QuizQuesters/about.html";
+  }
+  
+  function redirectToAnotherPage() {
+    window.location.href = "WEEK 6/QuizQuesters/library.html";
+  }
+
+  function redirectToAnotherPage() {
+    window.location.href = "WEEK 6/QuizQuesters/index.html";
+  }
+
 // to call api when score is 10/10
 // will need to change the playScore value based on what text content is generated from completing the quiz
 const playerScore = document.querySelector('#score').textContent
