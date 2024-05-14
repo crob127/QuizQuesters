@@ -27,7 +27,6 @@ document.getElementById("form").addEventListener('submit', function (event) {
   storeName();
   displayMsg();
 });
-<<<<<<< fabian
 init();
 
 function redirectToAnotherPage() {
@@ -41,6 +40,4 @@ function redirectToAnotherPage() {
 function redirectToAnotherPage() {
   window.location.href = "WEEK 6/QuizQuesters/index.html";
 }
-=======
-//Add code: attach eventListener to the playBtn to call Trivia API when click on the button
->>>>>>> main
+
