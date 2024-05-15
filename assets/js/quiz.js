@@ -39,7 +39,7 @@ for (let i=0; i < categoriesArray.length; i++) {
         console.log("true");
         var categoryId=categoriesArray[i].id;
         console.log(categoryId);
-        quizUrl = `https://opentdb.com/api.php?amount=10&category=${categoryId}`;
+        quizUrl = `https://opentdb.com/api.php?amount=10&category=${categoryId}&type=multiple`;
         console.log(quizUrl);
         fetch (quizUrl)
         .then((resp)=>resp.json())
@@ -52,29 +52,25 @@ for (let i=0; i < categoriesArray.length; i++) {
             question.innerText=element.question;
             liEl.appendChild(question);
             dropdown=document.createElement('select')
+            dropdown.setAttribute("data-status","");
             liEl.appendChild(dropdown);
             document.querySelector('ol').appendChild(liEl);
-           
-            if (element.type=="boolean") {
-                console.log(element.type);
-                var optionTrue=document.createElement('option');
-                optionTrue.setAttribute("value", true);
-                optionTrue.innerText="true";
-                dropdown.appendChild(optionTrue);
-                var optionFalse=document.createElement('option');
-                optionFalse.innerText="false";
-                optionFalse.setAttribute("value", false);
-                dropdown.appendChild(optionFalse);
-            } else if (element.type=="multiple") {
                 const answers=[];
                 for (let i=0;i<3; i++) {
-                    answers[i]=element.incorrect_answers[i];
-                }
-                answers.push(element.correct_answer);
+                    answers[i]={
+                        value: element.incorrect_answers[i],
+                        status: "incorrect"
+                    };
+                };
+                var correctAnswer={
+                    value: element.correct_answer,
+                    status:"correct"
+                };
+                answers.push(correctAnswer);
                 console.log(answers);
                        
                         
-                        function shuffle(array) {
+                function shuffle(array) {
                             let currentIndex = array.length;
 
                             // While there remain elements to shuffle...
@@ -86,75 +82,55 @@ for (let i=0; i < categoriesArray.length; i++) {
                             // And swap it with the current element.
                             [ array[currentIndex], array[randomIndex]] = [
                                 array[randomIndex], array[currentIndex]];
-                            }
-                        }
+                            };
+                        };
                         shuffle(answers);
                         console.log(answers);
                         for (let i=0; i<answers.length; i++) {
                         var option=document.createElement('option');
-                        option.textContent=answers[i];
-                        option.setAttribute("value", answers[i]);
+                        option.textContent=answers[i].value;
+                        option.setAttribute("value", answers[i].value);
+                        option.setAttribute("data-status", answers[i].status);
                         dropdown.appendChild(option);
                         }
-                        
-                        
-                
-
-
-            }
+            
             }
         //adding a sumbit btn to the form
-        submitQuizBtn=document.createElement('button');
+        var submitQuizBtn=document.createElement('button');
         submitQuizBtn.innerText="SUBMIT QUIZ";
         submitQuizBtn.setAttribute("id", "submit-quiz");
         document.getElementById("quizform").appendChild(submitQuizBtn);
+    document.getElementById("submit-quiz").addEventListener('click',
+       function showScore (event) {
+        event.preventDefault();
+        let ol=document.querySelector('ol');
+        const lis = ol.children;
+        console.log(lis);
+        let scoreCount=0;
+        for (let element of lis) {
+          var currentDropdown=element.children[1];
+          console.log(currentDropdown);
+           var selectedOption=element.children[1].value;
+           var allAnswers=currentDropdown.children;
+           console.log(selectedOption);
+           for (let el of allAnswers) {
+            if (el.dataset.status=="correct") {
+                var correctOption=el.innerText;
+            };
+           };
+           console.log(correctOption);
+           if (selectedOption==correctOption) {
+             scoreCount++;
+            }
+           
+          };
+          console.log(scoreCount);
+        alert(`Your score is ${scoreCount}/10`);
+        
+    });
+        
         })
-    }
-    }
+        }
+    };
+    });
 })
-});
-/* document.getElementById(submitQuizBtn).addEventListener('click', function() {
-    var results=document.createElement('div')
-})*/
-=======
-/*https://opentdb.com/api.php?amount=10&category=11&difficulty=medium&type=multiple film 10 questions medium */
-
-
-const apiurl1 = "https://opentdb.com/api.php?amount=10&category=11&difficulty=medium&type=multiple"
-
-fetch(apiUrl1)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('It no Worky');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-
-/*https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple general knowledge 10 questions medium */
-
-  
-
-
-const apiurl2 = "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple"
-
-fetch(apiUrl2)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('It no Worky');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-

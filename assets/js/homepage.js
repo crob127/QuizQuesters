@@ -1,12 +1,14 @@
 function displayMsg() {
     const helloMsg = document.createElement('h2');
     helloMsg.textContent = "Hello, " + document.getElementById("username").value;
+    console.log(helloMsg);
     document.body.appendChild(helloMsg);
     const quizLink=document.createElement('a');
     quizLink.setAttribute("href", "./quiz.html");
     document.body.appendChild(quizLink);
     const playBtn=document.createElement('button');
     playBtn.textContent="START QUIZ";
+    console.log(playBtn);
     playBtn.setAttribute("style", "background: red; color: white; padding: 20px;");
     quizLink.appendChild(playBtn);
    
@@ -22,25 +24,8 @@ document.getElementById("form").addEventListener('submit', function (event) {
   if (userInput === '') {
     alert("Please enter you name to continue");
     return;
-  }
+  };
 
   storeName();
   displayMsg();
 });
-<<<<<<< fabian
-init();
-
-function redirectToAnotherPage() {
-  window.location.href = "WEEK 6/QuizQuesters/about.html";
-}
-
-function redirectToAnotherPage() {
-  window.location.href = "WEEK 6/QuizQuesters/library.html";
-}
-
-function redirectToAnotherPage() {
-  window.location.href = "WEEK 6/QuizQuesters/index.html";
-}
-=======
-//Add code: attach eventListener to the playBtn to call Trivia API when click on the button
->>>>>>> main
