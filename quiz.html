@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizQuesters</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
 </head>
 <body>
     <header>
@@ -11,7 +12,7 @@
         <div class="logo">
             <img src=".//assets/images/QuizQuestersLogo2PNG.jpg.png" alt="QuizQuesters">
         </div>
-        <nav>
+        <nav class="navbar is-dark">
             <ul>
                 <li class="navbar-item"><a href="./index.html">Homepage</a></li>
                 <li class="navbar-item"><a href="./about.html">About</a></li>
@@ -20,13 +21,13 @@
         </nav>
     </header>
 
-    <main>
+    <main class="text-container hero is-fullheight m-3">
         <div class="quiz-container">
-            <select class="dropdown-form" id="select-category" aria-label=".form-select-lg example">
+            <select class="dropdown-form has-text-info has-background-dark" id="select-category" aria-label=".form-select-lg example">
                 <option selected id="selected">Select the category</option>
             </select>
             <form id="quizform">
-                <ol id="questions">
+                <ol class="has-text-info" id="questions">
                     
                 </ol>
             </form>
