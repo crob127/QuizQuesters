@@ -101,8 +101,16 @@ for (let i=0; i < categoriesArray.length; i++) {
         submitQuizBtn.setAttribute("id", "submit-quiz");
         document.getElementById("quizform").appendChild(submitQuizBtn);
     document.getElementById("submit-quiz").addEventListener('click',
+
        function showScore (event) {
         event.preventDefault();
+        document.getElementById("quiz-container").setAttribute("style","display:none");
+        //create a div inside which the score will be shown
+        var scoreDiv=document.createElement('div');
+        scoreDiv.setAttribute("id","score");
+        document.getElementById("main").appendChild(scoreDiv);
+
+        //event.preventDefault();
         let ol=document.querySelector('ol');
         const lis = ol.children;
         console.log(lis);
@@ -125,7 +133,7 @@ for (let i=0; i < categoriesArray.length; i++) {
            
           };
           console.log(scoreCount);
-        alert(`Your score is ${scoreCount}/10`);
+          scoreDiv.textContent=`Your score is ${scoreCount}/10`;
         
     });
         
