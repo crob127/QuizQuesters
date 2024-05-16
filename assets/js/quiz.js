@@ -1,10 +1,6 @@
 
 var categoriesUrl = `https://opentdb.com/api_category.php`;
-var userToken = JSON.parse(localStorage.getItem("name"))
-var tokenUrl = `https://opentdb.com/api.php?amount=10&token=${userToken}`;
-
-
-var selectCategory=document.getElementById("select-category")
+const selectCategory=document.getElementById("select-category")
 //call API thar returns categories of the trivia game
 fetch(categoriesUrl)
 .then((response)=>response.json())
@@ -19,17 +15,17 @@ return;
 }
 //loop through an array of categories and adds each category to the dropdown list
 for (let category of data.trivia_categories) {
-var categoryEl=document.createElement('option');
+let categoryEl=document.createElement('option');
 categoryEl.innerText=category.name;
 categoryEl.setAttribute("data-id", category.id)
 selectCategory.append(categoryEl);
 }
 //get a reference to the dropdown list
-var categorySelected=document.getElementById("select-category");
+const categorySelected=document.getElementById("select-category");
 console.log(categorySelected);
 //add event listenet to the dropdown list
 categorySelected.addEventListener('change', function () {
-    var selectedItem=document.getElementById("select-category").value;
+const selectedItem=document.getElementById("select-category").value;
 const categoriesArray=JSON.parse(localStorage.getItem('categories'));
 console.log(categoriesArray);
 
@@ -38,7 +34,7 @@ for (let i=0; i < categoriesArray.length; i++) {
     if (selectedItem==categoriesArray[i].name) {
         //once the chosen category is found in local storage - get the id of the category object to use it later to create an API link
         console.log("true");
-        var categoryId=categoriesArray[i].id;
+        let categoryId=categoriesArray[i].id;
         console.log(categoryId);
         quizUrl = `https://opentdb.com/api.php?amount=10&category=${categoryId}&type=multiple`;
         console.log(quizUrl);
@@ -90,8 +86,8 @@ for (let i=0; i < categoriesArray.length; i++) {
                         shuffle(answers);
                         console.log(answers);
                         for (let i=0; i<answers.length; i++) {
-                        var option=document.createElement('option');
-                        option.textContent=answers[i].value;
+                        let option=document.createElement('option');
+                        option.innerHTML=answers[i].value;
                         option.setAttribute("value", answers[i].value);
                         option.setAttribute("data-status", answers[i].status);
                         dropdown.appendChild(option);
@@ -99,19 +95,19 @@ for (let i=0; i < categoriesArray.length; i++) {
             
             }
         //adding a sumbit btn to the form
-        var submitQuizBtn=document.createElement('button');
+        const submitQuizBtn=document.createElement('button');
         submitQuizBtn.innerText="SUBMIT QUIZ";
         submitQuizBtn.setAttribute("id", "submit-quiz");
         document.getElementById("quizform").appendChild(submitQuizBtn);
-    document.getElementById("submit-quiz").addEventListener('click',
-//this function renders the quiz score to the page
+        document.getElementById("submit-quiz").addEventListener('click',
+        //this function renders the quiz score to the page
        function showScore (event) {
         event.preventDefault();
         //hide the quiz container
         console.log( document.getElementById("quiz-container"));
         document.getElementById("quiz-container").setAttribute("style","display:none");
         //create a div inside which the score will be shown
-        var scoreDiv=document.createElement('div');
+        const scoreDiv=document.createElement('div');
         scoreDiv.setAttribute("id","score");
         document.getElementById("main").appendChild(scoreDiv);
 
@@ -121,10 +117,10 @@ for (let i=0; i < categoriesArray.length; i++) {
         let scoreCount = 0;
         console.log(lis);
         for (let element of lis) {
-          var currentDropdown=element.children[1];
+          let currentDropdown=element.children[1];
           console.log(currentDropdown);
-           var selectedOption=element.children[1].value;
-           var allAnswers=currentDropdown.children;
+           let selectedOption=element.children[1].value;
+           const allAnswers=currentDropdown.children;
            console.log(selectedOption);
            for (let el of allAnswers) {
             if (el.dataset.status=="correct") {
@@ -140,10 +136,12 @@ for (let i=0; i < categoriesArray.length; i++) {
           console.log(scoreCount);
           scoreDiv.textContent=`Your score is ${scoreCount}/10`;
         
-          if (scoreCount === 10) {
+          if (scoreCount > 8) {
+            document.getElementById("score-msg").innerText="Congrats, you earned a new avatar!";
             fetchAvatar();
+
         } else {
-            console.log('better luck next time!');
+            document.getElementById("score-msg").innerText="Better luck next time!";
             const newAvatar = document.createElement('img');
             newAvatar.setAttribute("src", "./assets/images/Bobby-the-Blobfish.png");
             document.getElementById("imageContainer").appendChild(newAvatar);  
@@ -168,7 +166,6 @@ function fetchAvatar() {
     avatarArray.push(avatarUrl);
 
     localStorage.setItem('avatarCollection', JSON.stringify(avatarArray));
-
     const newAvatar = document.createElement('img');
     newAvatar.setAttribute("src", avatarUrl);
     document.getElementById("imageContainer").appendChild(newAvatar);
@@ -178,7 +175,7 @@ function fetchAvatar() {
 
 function displayAvatars() {
     let collectionContainter = document.getElementById('collection-container')
-    collectionContainter.innerHTML = ''
+    collectionContainter.innerHTML = '';
 
     let avatarArray = JSON.parse(localStorage.getItem('avatarCollection'));
         if (avatarArray && avatarArray.length > 0) {
