@@ -20,7 +20,7 @@ function storeName() {
 }
 document.getElementById("form").addEventListener('submit', function (event) {
   event.preventDefault();
-
+document.getElementById("form").setAttribute("style","display:none")
   var userInput = document.getElementById("username").value.trim();
   if (userInput === '') {
     alert("Please enter you name to continue");
