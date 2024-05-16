@@ -1,11 +1,14 @@
+
+
 function displayMsg() {
-    const helloMsg = document.createElement('h2');
+  const buttonContainer = document.getElementById('start-quiz')  
+  const helloMsg = document.createElement('h2');
     helloMsg.textContent = "Hello, " + document.getElementById("username").value;
     console.log(helloMsg);
-    document.body.appendChild(helloMsg);
+    buttonContainer.appendChild(helloMsg);
     const quizLink=document.createElement('a');
     quizLink.setAttribute("href", "./quiz.html");
-    document.body.appendChild(quizLink);
+    buttonContainer.appendChild(quizLink);
     const playBtn=document.createElement('button');
     playBtn.setAttribute("id","start-quiz");
     playBtn.textContent="START QUIZ";
