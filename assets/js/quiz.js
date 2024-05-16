@@ -107,9 +107,8 @@ for (let i=0; i < categoriesArray.length; i++) {
         console.log( document.getElementById("quiz-container"));
         document.getElementById("quiz-container").setAttribute("style","display:none");
         //create a div inside which the score will be shown
-        const scoreDiv=document.createElement('div');
-        scoreDiv.setAttribute("id","score");
-        document.getElementById("main").appendChild(scoreDiv);
+        const scoreDiv=document.createElement('h4');
+        document.getElementById("score").appendChild(scoreDiv);
 
         //loop through the ol the check if each selected answer is corect/incorrect and store correct answers count in a variable
         let ol=document.querySelector('ol');
