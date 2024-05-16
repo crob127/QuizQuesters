@@ -145,7 +145,7 @@ for (let i=0; i < categoriesArray.length; i++) {
         } else {
             console.log('better luck next time!');
             const newAvatar = document.createElement('img');
-            newAvatar.setAttribute("src", "./assets/images/Bobby the Blobfish.png");
+            newAvatar.setAttribute("src", "./assets/images/Bobby-the-Blobfish.png");
             document.getElementById("imageContainer").appendChild(newAvatar);  
             newAvatar.style.width = '200px';
         }  
