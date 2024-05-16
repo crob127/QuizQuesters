@@ -1,7 +1,7 @@
 
 
 function displayMsg() {
-  const buttonContainer = document.getElementById('start-quiz')  
+  const buttonContainer = document.getElementById('startquiz')  
   const helloMsg = document.createElement('h2');
     helloMsg.textContent = "Hello, " + document.getElementById("username").value;
     console.log(helloMsg);
