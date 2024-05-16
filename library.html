@@ -6,36 +6,25 @@
     <title>QuizQuesters</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
 </head>
-<body>
-    
+<body> 
     <header>
         <i></i>
         <div class="logo">
             <img src=".//assets/images/QuizQuestersLogo2PNG.jpg.png" alt="QuizQuesters">
         </div>
         <nav class="navbar is-dark">
-             <div class="navbarmenu">
-                <ul class="navbar-end">
-                    <li class="navbar-item"><a href="./index.html">Homepage</a></li>
-                    <li class="navbar-item"><a href="./about.html">About</a></li>
-                    <li class="navbar-item"><a href="./library.html">Your Library</a></li>
+             <div class="navbarmenu has-background-dark">
+                <ul class="navbar-end tabs is-boxed is-fullwidth">
                     <li class="navbar-item"><a href="./index.html">Homepage</a></li>
                     <li class="navbar-item"><a href="./about.html">About</a></li>
                     <li class="navbar-item"><a href="./library.html">Your Library</a></li>
                 </ul>
-            </div> 
+            </div>
         </nav>
     </header>
+
     <main class="text-container hero is-fullheight m-3">
-        <div>
-            <!--test button to call function-->
-            <button id="taskButton">Complete Task</button>
-            <img id="avatarImage" src="" alt="Avatar will appear here" style="width: 100px; height: 100px;">
-        </div>
-        <!--example div for the quiz results on quiz.html-->
-        <div>
-            <p id ="score">Your Score: 10/10</p>
-        </div>
+        <h2>Check out all of the QuizQuesters you have collected!</h2>
         <div class ="stat-card">
             <!--via js number of avatars collected-->
             <!--via js number of quests completed-->
@@ -44,9 +33,9 @@
             <!--load all of the collected avatars-->
         </div>
     </main>
-    <script src="assets/js/library.js"></script>
     <footer class="footer has-background-grey-dark is-flex-align-items-flex-end mt-auto">
         <h6 class=" content has-text-grey-light has-text-centered">QuizQuesters 2024</h6>
     </footer>
+    <script src="assets/js/library.js"></script>
 </body>
 </html>

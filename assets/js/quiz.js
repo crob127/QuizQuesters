@@ -3,6 +3,7 @@ var categoriesUrl = `https://opentdb.com/api_category.php`;
 var userToken = JSON.parse(localStorage.getItem("name"))
 var tokenUrl = `https://opentdb.com/api.php?amount=10&token=${userToken}`;
 
+
 var selectCategory=document.getElementById("select-category")
 //call API thar returns categories of the trivia game
 fetch(categoriesUrl)
@@ -50,7 +51,7 @@ for (let i=0; i < categoriesArray.length; i++) {
             console.log(element);
             liEl=document.createElement('li')
             question=document.createElement('h4');
-            question.innerText=element.question;
+            question.innerHTML=element.question;
             liEl.appendChild(question);
             dropdown=document.createElement('select')
             dropdown.setAttribute("data-status","");
@@ -117,8 +118,8 @@ for (let i=0; i < categoriesArray.length; i++) {
         //loop through the ol the check if each selected answer is corect/incorrect and store correct answers count in a variable
         let ol=document.querySelector('ol');
         const lis = ol.children;
+        let scoreCount = 0;
         console.log(lis);
-        let scoreCount=0;
         for (let element of lis) {
           var currentDropdown=element.children[1];
           console.log(currentDropdown);
@@ -127,7 +128,7 @@ for (let i=0; i < categoriesArray.length; i++) {
            console.log(selectedOption);
            for (let el of allAnswers) {
             if (el.dataset.status=="correct") {
-                var correctOption=el.innerText;
+                var correctOption=el.innerHTML;
             };
            };
            console.log(correctOption);
@@ -139,9 +140,61 @@ for (let i=0; i < categoriesArray.length; i++) {
           console.log(scoreCount);
           scoreDiv.textContent=`Your score is ${scoreCount}/10`;
         
+          if (scoreCount === 10) {
+            fetchAvatar();
+        } else {
+            console.log('better luck next time!');
+            const newAvatar = document.createElement('img');
+            newAvatar.setAttribute("src", "./assets/images/Bobby the Blobfish.png");
+            document.getElementById("imageContainer").appendChild(newAvatar);  
+            newAvatar.style.width = '200px';
+        }  
     });
         })
         }
     };
     });
 })
+
+function fetchAvatar() {
+    const seed = Math.floor(Math.random() * 10000);  // Generate a random seed for the avatar
+    const avatarUrl = `https://api.dicebear.com/8.x/pixel-art/svg?seed=${seed}`;
+
+    let avatarArray = JSON.parse(localStorage.getItem('avatarCollection'));
+    if (!avatarArray) {
+        avatarArray = [];
+    }
+
+    avatarArray.push(avatarUrl);
+
+    localStorage.setItem('avatarCollection', JSON.stringify(avatarArray));
+
+    const newAvatar = document.createElement('img');
+    newAvatar.setAttribute("src", avatarUrl);
+    document.getElementById("imageContainer").appendChild(newAvatar);
+    newAvatar.style.width = '200px';
+
+}
+
+function displayAvatars() {
+    let collectionContainter = document.getElementById('collection-container')
+    collectionContainter.innerHTML = ''
+
+    let avatarArray = JSON.parse(localStorage.getItem('avatarCollection'));
+        if (avatarArray && avatarArray.length > 0) {
+            avatarArray.forEach(avatarUrl => {
+            let img = document.createElement('img');
+            img.src = avatarUrl;
+            img.style.width = '100px'
+            img.style.margin = '5px'
+            collectionContainter.appendChild(img);
+        });
+        } else {
+            collectionContainter.innerText = 'No Quiz Questers Collected. Win challenges to add to your library!'
+        }
+    
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    displayAvatars(); // display all avatars stored in local storage when the page loads
+});
