@@ -107,6 +107,7 @@ for (let i=0; i < categoriesArray.length; i++) {
        function showScore (event) {
         event.preventDefault();
         //hide the quiz container
+        console.log( document.getElementById("quiz-container"));
         document.getElementById("quiz-container").setAttribute("style","display:none");
         //create a div inside which the score will be shown
         var scoreDiv=document.createElement('div');
