@@ -45,6 +45,7 @@ for (let i=0; i < categoriesArray.length; i++) {
         .then((resp)=>resp.json())
         .then((quizData)=>{
         console.log(quizData);
+        //loop though the array of objects received on the API call and for each array element create an li to display on the page
         for (let element of quizData.results) {
             console.log(element);
             liEl=document.createElement('li')
@@ -53,6 +54,7 @@ for (let i=0; i < categoriesArray.length; i++) {
             liEl.appendChild(question);
             dropdown=document.createElement('select')
             dropdown.setAttribute("data-status","");
+            dropdown.setAttribute("class","dropdowns");
             liEl.appendChild(dropdown);
             document.querySelector('ol').appendChild(liEl);
                 const answers=[];
@@ -69,7 +71,7 @@ for (let i=0; i < categoriesArray.length; i++) {
                 answers.push(correctAnswer);
                 console.log(answers);
                        
-                        
+                //this function shuffles the array of answers, otherwise correct answer would always appear last      
                 function shuffle(array) {
                             let currentIndex = array.length;
 
@@ -101,16 +103,18 @@ for (let i=0; i < categoriesArray.length; i++) {
         submitQuizBtn.setAttribute("id", "submit-quiz");
         document.getElementById("quizform").appendChild(submitQuizBtn);
     document.getElementById("submit-quiz").addEventListener('click',
-
+//this function renders the quiz score to the page
        function showScore (event) {
         event.preventDefault();
+        //hide the quiz container
+        console.log( document.getElementById("quiz-container"));
         document.getElementById("quiz-container").setAttribute("style","display:none");
         //create a div inside which the score will be shown
         var scoreDiv=document.createElement('div');
         scoreDiv.setAttribute("id","score");
         document.getElementById("main").appendChild(scoreDiv);
 
-        //event.preventDefault();
+        //loop through the ol the check if each selected answer is corect/incorrect and store correct answers count in a variable
         let ol=document.querySelector('ol');
         const lis = ol.children;
         console.log(lis);
@@ -136,7 +140,6 @@ for (let i=0; i < categoriesArray.length; i++) {
           scoreDiv.textContent=`Your score is ${scoreCount}/10`;
         
     });
-        
         })
         }
     };

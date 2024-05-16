@@ -1,31 +1,20 @@
-function redirectToAnotherPage() {
-    window.location.href = "WEEK 6/QuizQuesters/about.html";
-  }
-  
-  function redirectToAnotherPage() {
-    window.location.href = "WEEK 6/QuizQuesters/library.html";
-  }
-
-  function redirectToAnotherPage() {
-    window.location.href = "WEEK 6/QuizQuesters/index.html";
-  }
 
 // to call api when score is 10/10
 // will need to change the playScore value based on what text content is generated from completing the quiz
-const playerScore = document.querySelector('#score').textContent
+// const playerScore = document.querySelector('#score').textContent
 
-console.log(playerScore)
+// console.log(playerScore)
 
-if (playerScore == "Your Score: 10/10") {
-    fetchAvatar()
-} else {
-    console.log('better luck next time!')
-}
+// if (playerScore == "Your score is 10/10") {
+//     fetchAvatar()
+// } else {
+//     console.log('better luck next time!')
+// }
 
 // tester button:
-// document.getElementById('taskButton').addEventListener('click', function() {
-//     fetchAvatar();
-// });
+document.getElementById('taskButton').addEventListener('click', function() {
+    fetchAvatar();
+});
 
 function fetchAvatar() {
     const seed = Math.floor(Math.random() * 10000);  // Generate a random seed for the avatar
