@@ -7,6 +7,7 @@ function displayMsg() {
     quizLink.setAttribute("href", "./quiz.html");
     document.body.appendChild(quizLink);
     const playBtn=document.createElement('button');
+    playBtn.setAttribute("id","start-quiz");
     playBtn.textContent="START QUIZ";
     console.log(playBtn);
     playBtn.setAttribute("style", "background: red; color: white; padding: 20px;");
